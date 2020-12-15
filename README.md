@@ -1,6 +1,6 @@
 # okcomputer
 
-A website which checks if a transaction is fraudulent
+A website which checks wheather a transaction is fraudulent
 
 # Installation
 
