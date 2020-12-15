@@ -2,7 +2,7 @@
 
 A website which checks if a transaction is fraudulent
 
-#Installation
+# Installation
 
 *Fork and Clone the Repo
 ```
