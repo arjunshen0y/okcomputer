@@ -2,19 +2,18 @@
 {% extends 'fraud/base.html'%}
 
 {% block body_block %}
+<div  class = 'jumbo-tron'>
 
-<h4>Enter The Transaction Details :</h4>
-<form action="{% url 'fraud:result' %}" enctype="multipart/form-data" method="POST">
-
-
-    <div class = 'jumbotron'>
+<h4 class="check">Enter The Transaction Details :</h4>
+<form class="form-signin login-form" action="{% url 'fraud:result' %}" enctype="multipart/form-data" method="POST">
+    <div>
         <div>
             {% csrf_token %}
             {{ form.as_p }}
         </div>
     </div>
-    
-    <input type='submit' value='Check'>
-</form>
 
+    <input class="btn btn-lg btn-light btn-block form-control" type='submit' value='Check'>
+</form>
+</div>
 {% endblock %}
