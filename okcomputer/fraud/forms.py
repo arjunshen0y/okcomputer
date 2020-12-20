@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfileInfo,Transaction
+from .models import UserProfileInfo
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -23,7 +23,3 @@ class UserExtra(forms.ModelForm):
 
 
 
-class Transaction_Details(forms.ModelForm):
-    class Meta():
-        model = Transaction
-        fields = '__all__'
