@@ -21,8 +21,9 @@ class UserExtra(forms.ModelForm):
         fields = {'profile_pic'}
         
 
-
+'''
 class Transaction_Details(forms.ModelForm):
     class Meta():
         model = Transaction
-        fields = '__all__'
+        exclude = ['cat']'''
+    

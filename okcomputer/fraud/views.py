@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from . import forms
-from .forms import UserForm,UserExtra,Transaction_Details
+from . import forms,models
+from .forms import UserForm,UserExtra
+from .models import Transaction
+from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+
 
 #Imports needed for Login
 
@@ -80,25 +86,26 @@ def landing(request):
 
     return render(request, 'fraud/landing.html')
 
-def check(request):
+class Create_Transaction(LoginRequiredMixin,CreateView):
+    fields = ['amount','old_balance_org','new_balance_org','old_balance_dest','new_balance_dest','transfer_type']
+    model = Transaction
 
-    form_data = Transaction_Details()
-    if(request.method == 'post'):
-        form_data = Transaction_Details(request.POST)
-
-        if(form_data.is_valid):
-            trans_form = form_data.save()
-            trans_form.save()
-
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        if(form.instance.transfer_type == 'transfer' or form.instance.transfer_type == 'cashout'):
+            form.instance.cat = 1
         else:
-            return HttpResponse('Invalid Form Values')
-
-    else:
-        return render(request, 'fraud/check.html', context= {'form' : form_data})
+            form.instance.cat = 0
+        return super().form_valid(form)
 
 def result(request):
 
     return render(request, 'fraud/result.html')
+
+    
+    
+
+
 
 
 

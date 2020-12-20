@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse, reverse_lazy
 # Create your models here.
 
 class UserProfileInfo(models.Model):
@@ -24,8 +25,12 @@ class Transaction(models.Model):
     new_balance_org = models.IntegerField()
     old_balance_dest = models.IntegerField()
     new_balance_dest = models.IntegerField()
-    cat = models.IntegerField(choices=PAYMENT_METHODS,default='cashout')
+    transfer_type = models.CharField(max_length = 20,choices=PAYMENT_METHODS,default='cashout')
+    cat = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.amount
+        return str(self.amount)
+
+    def get_absolute_url(self):
+        return reverse('fraud:result')
 
