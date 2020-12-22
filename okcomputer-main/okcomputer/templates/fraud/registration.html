@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'fraud/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="jumbo-tron">
+    {% if registered %}
+        <h1 style="text-align: center" >Thank You for Registering</h1>
+    {% else %}
+        <h1 style="margin-left:39%">Register Here !</h1>
+        <h4 style="margin-left:42%">Fill Out The Form</h4>
+        <form class="form-signin login-form" enctype="multipart/form-data" method = 'post'>
+            {% csrf_token %}
+            {{ user_form.username }} <br>
+            {{ user_form.password }} <br>
+            {{ user_form.email }}<br>
+          <div>
+            {{ profile_form.as_p }}
+          </div>
+            <input  class="btn btn-lg btn-light  btn-block form-control" type="submit" name="" value="Register">
+        </form>
+    {% endif %}
+
+</div>
+{% endblock %}
