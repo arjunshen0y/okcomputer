@@ -10,5 +10,5 @@ urlpatterns = [
     path('landing/',views.landing, name = 'landing'),
     path('check/',views.Create_Transaction.as_view(),name = 'check'),
     path('result/',views.result,name = 'result'),
-   
-]
+    path('transactionlist/',views.TransactionListView.as_view(),name='transaction_list'),
+    ]

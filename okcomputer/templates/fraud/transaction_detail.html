@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'fraud/base.html'%}
+
+{% block body_block %}
+
+  <div class="container p-3">
+    <div class="card">
+    <div class="card-header">
+      {{user.username}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{transaction.amount}} rs</h5>
+      <button type="button" class="btn btn-primary">
+        {{transaction.testing}} <span class="badge bg-secondary"></span>
+        <span class="visually-hidden"></span>
+      </button>
+      <a href="{% url 'fraud:transaction_list' %}" class="btn btn-primary">see details</a>
+    </div>
+  </div>
+  </div>
+{% endblock %}
