@@ -25,5 +25,9 @@ class UserExtra(forms.ModelForm):
 class Transaction_Details(forms.ModelForm):
     class Meta():
         model = Transaction
+<<<<<<< Updated upstream
         exclude = ['cat']'''
+=======
+        exclude = ['cat']
+>>>>>>> Stashed changes
     
