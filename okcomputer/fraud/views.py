@@ -3,7 +3,9 @@ from . import forms,models
 from .forms import UserForm,UserExtra
 from .models import Transaction
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView,DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .pred import getPredictions
 
 
 
@@ -20,7 +22,7 @@ def index(request):
     return render(request, 'fraud/index.html')
 
 def register(request):
-    
+
     registered = False                  # first we assume that the user has not registered
 
     if request.method == 'POST':
@@ -45,7 +47,7 @@ def register(request):
 
         else:
             print(user_form.errors, profile_form.errors) #shows error if form is invalid
-    
+
     else:
          user_form = UserForm()
          profile_form = UserExtra()
@@ -59,7 +61,7 @@ def user_login(request):
         password = request.POST.get('password')
 
         user = authenticate(username = username, password= password)  #user variable is a boolean which holds the value returned by builtin authenticate fn
-           
+
         if user:
             if user.is_active:       #django checks if user is authenticated
                 login(request,user)  #inbuilt function which logs in automatically
@@ -67,7 +69,7 @@ def user_login(request):
 
             else:
                 return HttpResponse('The Account is Currently Inactive')
-            
+
         else:       #if user hasnt registered yet
 
             print("Username - {} and pswd - {}".format(username,password))      #outputs to console about details of invalid login attempts
@@ -87,30 +89,31 @@ def landing(request):
     return render(request, 'fraud/landing.html')
 
 class Create_Transaction(LoginRequiredMixin,CreateView):
-    fields = ['amount','old_balance_org','new_balance_org','old_balance_dest','new_balance_dest','transfer_type']
+    fields = ['step', 'amount', 'nameOrig','old_balance_org', 'new_balance_org', 'nameDest', 
+                  'old_balance_dest', 'new_balance_dest', 'transaction_type']
     model = Transaction
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        if(form.instance.transfer_type == 'transfer' or form.instance.transfer_type == 'cashout'):
-            form.instance.cat = 1
-        else:
-            form.instance.cat = 0
+        
+        form.instance.user = self.request.user
+        form.save()
         return super().form_valid(form)
 
+class TransactionListView(ListView):
+    model = Transaction
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
+
+class TransactionDetailView(DetailView):
+    model = Transaction
+
+
+
 def result(request):
-
-    return render(request, 'fraud/result.html')
-
-    
-    
-
-
-
-
-
-
-
-
-
-
+    t = Transaction.objects.last()
+    result = getPredictions(Transaction.objects.last())
+    t.testing = result
+    print(t.testing)
+    t.save()
+    return render(request, 'fraud/result.html',{'result':result})
