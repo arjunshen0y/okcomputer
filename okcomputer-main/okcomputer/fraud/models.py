@@ -22,8 +22,7 @@ class Transaction(models.Model):
     new_balance_dest = models.FloatField()
     transfer_type = models.CharField(max_length = 20,choices=PAYMENT_METHODS,default='cashout')
     cat = models.IntegerField(default=0)
-
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
     testing = models.CharField(max_length=200,default='null')
 
     def __str__(self):

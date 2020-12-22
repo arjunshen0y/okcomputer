@@ -11,5 +11,4 @@ urlpatterns = [
     path('check/',views.Create_Transaction.as_view(),name = 'check'),
     path('result/',views.result,name = 'result'),
     path('transactionlist/',views.TransactionListView.as_view(),name='transaction_list'),
-    #path(r'^transaction/(?P<pk>\d+)$',views.TransactionDetailView.as_view(),name='transaction_detail'),
-]
+    ]

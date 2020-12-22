@@ -21,8 +21,15 @@ def getPredictions(Transactiontest):
 
     df = pd.DataFrame(data = arr,
                   columns = ['amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'cat'])
+
+
     model = pickle.load(open(os.path.join(settings.MODELS, 'testing_model.sav'),'rb'))
+
+
+
     prediction= model.predict(df)
+
+
     print(prediction)
     if prediction[0]==1:
         return "fraud"

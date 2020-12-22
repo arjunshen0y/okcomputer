@@ -98,13 +98,14 @@ class Create_Transaction(LoginRequiredMixin,CreateView):
             form.instance.cat = 1
         else:
             form.instance.cat = 0
+        form.instance.user = self.request.user
         form.save()
         return super().form_valid(form)
 
 class TransactionListView(ListView):
     model = Transaction
     def get_queryset(self):
-        return Transaction.objects.all()
+        return Transaction.objects.filter(user=self.request.user)
 
 class TransactionDetailView(DetailView):
     model = Transaction
@@ -112,8 +113,9 @@ class TransactionDetailView(DetailView):
 
 
 def result(request):
-    t = Transaction.objects.first()
+    t = Transaction.objects.last()
     result = getPredictions(Transaction.objects.first())
     t.testing = result
+    print(t.testing)
     t.save()
     return render(request, 'fraud/result.html',{'result':result})
