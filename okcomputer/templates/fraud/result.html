@@ -3,4 +3,9 @@
 
 {% block body_block %}
 <h4>Displays The Result</h4>
+<div class="alert alert-primary" role="alert">
+  {{result}}
+</div>
+
+  <a href="{% url 'fraud:transaction_list' %}" class="btn btn-primary">See All Transactions</a>
 {% endblock %}
