@@ -7,14 +7,14 @@
 <form method="POST">
 
 
-    <div class = 'jumbotron'>
+    <div class = 'jumbo-tron'>
         <div>
             {% csrf_token %}
             {{ form.as_p }}
         </div>
     </div>
-    
-    <input type='submit' value='Check'>
+
+    <input class="btn btn-lg btn-light" style="margin-left:2rem" type='submit' value='Check'>
 </form>
 
 {% endblock %}

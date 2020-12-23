@@ -4,12 +4,12 @@
 
 {% block body_block %}
 
-<div class="jumbo-tron">
+<div class="jumbo-tron bg-reg">
     {% if registered %}
         <h1 style="text-align: center" >Thank You for Registering</h1>
     {% else %}
-        <h1 style="margin-left:39%">Register Here !</h1>
-        <h4 style="margin-left:42%">Fill Out The Form</h4>
+        <!-- <h1 style="margin-left:39%">Register Here !</h1>
+        <h4 style="margin-left:42%">Fill Out The Form</h4> -->
         <form class="form-signin login-form" enctype="multipart/form-data" method = 'post'>
             {% csrf_token %}
             {{ user_form.username }} <br>
