@@ -1,3 +1,4 @@
+
 from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfileInfo
@@ -21,5 +22,9 @@ class UserExtra(forms.ModelForm):
         model = UserProfileInfo
         fields = {'profile_pic'}
 
+
+
+
+        
 
 
