@@ -11,9 +11,10 @@
           </div>
       </div>
       {% if user.is_authenticated %}
-      <button class="index-button btn btn-lg btn-light form-control"><a href="{% url 'fraud:check' %}">Check Fraud</a></button>
+      <button class="index-button btn btn-lg btn-light form-control"><a href="{% url 'fraud:check' %}">add a transaction</a></button>
       {% else %}
-      <button class="index-button btn btn-lg btn-light form-control"><a href="{% url 'fraud:login' %}">login</a></button>
+      <button class="index-button btn btn-lg btn-light form-control"><a href="{% url 'fraud:login' %}">Login</a></button>
+      <button class="index-button btn btn-lg btn-light form-control"><a href="{% url 'fraud:register' %}">Register</a></button>
       {% endif %}
 
 

@@ -65,7 +65,7 @@ def user_login(request):
         if user:
             if user.is_active:       #django checks if user is authenticated
                 login(request,user)  #inbuilt function which logs in automatically
-                return render(request,'fraud/landing.html')
+                return render(request,'fraud/transaction_list.html')
 
             else:
                 return HttpResponse('The Account is Currently Inactive')

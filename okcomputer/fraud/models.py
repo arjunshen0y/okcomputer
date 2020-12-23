@@ -24,7 +24,7 @@ class Transaction(models.Model):
     nameDest = models.CharField(max_length=200)
     old_balance_dest = models.FloatField(default=0)
     new_balance_dest = models.FloatField(default=0)
-    transaction_type = models.CharField(max_length=200, default='cashout')
+    transaction_type = models.CharField(max_length = 20,choices=PAYMENT_METHODS,default='cashout')
     user = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
     testing = models.CharField(max_length=200,default='null')
     
