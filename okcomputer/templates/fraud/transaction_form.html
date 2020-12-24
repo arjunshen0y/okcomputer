@@ -4,17 +4,17 @@
 {% block body_block %}
 
 <h4>Enter The Transaction Details :</h4>
-<form method="POST">
+<div class="tra-form">
+<form  class="form-signin login-form" method="POST">
 
 
-    <div class = 'jumbo-tron'>
+    <div style="color: white">
         <div>
             {% csrf_token %}
-            {{ form.as_p }}
+           {{ form.as_p }}<br>
         </div>
     </div>
 
     <input class="btn btn-lg btn-light" style="margin-left:2rem" type='submit' value='Check'>
-</form>
-
+</form></div>
 {% endblock %}

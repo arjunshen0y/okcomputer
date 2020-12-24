@@ -3,7 +3,7 @@ html {
 }
 
 body{
-  background-image: url("okcomputer-cover.jpg");
+  /* background-image: url("okcomputer-cover.jpg"); */
   font-family: "Montserrat", serif;
   /* background-image: url("https://www.transparenttextures.com/patterns/shattered.png"); */
   background-color:#212121 ;
@@ -122,6 +122,17 @@ position: absolute;
     background: rgba(0,0,0,.5);
     box-sizing: border-box;
     border-radius: 10px;
+}
+
+.tra-form{
+  position: absolute;
+    top: 20%;
+    left: 37%;
+  background: rgba(0,0,0,.5);
+  height: 680px;
+  width: 400px;
+  margin-top: 2rem;
+  border-radius: 10px;
 }
 
 .login-form{
