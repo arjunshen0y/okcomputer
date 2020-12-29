@@ -1,6 +1,7 @@
 # okcomputer
 
-A website which checks wheather a transaction is fraudulent
+A fraud detection application, using Machine Learning to detect and
+display fraudulent transactions that have been inputted.
 
 # Installation
 
